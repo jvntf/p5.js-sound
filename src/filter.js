@@ -76,7 +76,6 @@ define(function (require) {
 
 
 
-//constructor with inheritance
 
 
     
@@ -98,6 +97,57 @@ define(function (require) {
      }
   };
   p5.Filter.prototype = Object.create(p5.Effect.prototype);
+=======
+    if (type) {
+      this.setType(type);
+     }
+
+    //add the filter to the prototype
+  };
+  p5.Filter.prototype = Object.create(p5.Effect.prototype);
+
+ 
+
+  // p5.Filter.prototype.setup = function(type) {
+    
+  //   this.input.disconnect();
+  //   this.input.connect(biquad);
+  //   this.biquad.connect(this.output);
+
+  //   if (type) {
+  //     this.setType(type);
+  //    }
+
+  //   // body...
+  // };
+
+  // p5.Filter = function(type) {
+  //   //this.ac = p5sound.audiocontext;
+
+  //   //this.input = this.ac.createGain();
+  //   // this.output = this.ac.createGain();
+
+  //   *
+  //    *  The p5.Filter is built with a
+  //    *  <a href="http://www.w3.org/TR/webaudio/#BiquadFilterNode">
+  //    *  Web Audio BiquadFilter Node</a>.
+  //    *  
+  //    *  @property biquadFilter
+  //    *  @type {Object}  Web Audio Delay Node
+     
+  //   // this.biquad = this.ac.createBiquadFilter();
+
+  //   // this.input.connect(this.biquad);
+  //   this.biquad.connect(this.output);
+
+  //   // this.connect();
+  //    if (type) {
+  //     this.setType(type);
+  //   }
+
+  //   // add to the soundArray
+  //   p5sound.soundArray.push(this);
+  // };
 
   /**
    *  Filter an audio signal according to a set
@@ -214,6 +264,28 @@ define(function (require) {
     this.output.gain.linearRampToValueAtTime(currentVol, now + tFromNow + .001);
     this.output.gain.linearRampToValueAtTime(vol, now + tFromNow + rampTime + .001);
   };
+
+  /**
+   *  Send output to a p5.sound or web audio object
+   *  
+   *  @method connect
+   *  @param  {Object} unit
+   */
+
+  // p5.Filter.prototype.connect = function(unit) {
+  //   var u = unit || p5.soundOut.input;
+  //   this.output.connect(u);
+  // };
+
+  /**
+   *  Disconnect all output.
+   *  
+   *  @method disconnect
+   */
+
+  // p5.Filter.prototype.disconnect = function() {
+  //   this.output.disconnect();
+  // };
 
   p5.Filter.prototype.dispose = function() {
     // remove reference from soundArray
