@@ -345,8 +345,4 @@ define(function (require) {
 
 
 
-  // p5.Filter = function () {
-  //   p5.Effect.call(this, 'Filter');
-  // };
-  // p5.Filter.prototype = Object.create(p5.Filter.protoype);
 

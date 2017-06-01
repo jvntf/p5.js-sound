@@ -61,7 +61,7 @@ define(function (require) {
 		this.output = undefined;
 	};
 
-	
+
 	//effects necessary for all effects
 
 
