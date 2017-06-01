@@ -61,6 +61,13 @@ define(function (require) {
 		this.output = undefined;
 	};
 
+	
+	//effects necessary for all effects
+
+
+	// //set up the connection to src and output
+	// p5.Effect.prototype.process = function(src, amt) {
+	// 	src.connect(this.input);
 
 	//effects necessary for all effects
 

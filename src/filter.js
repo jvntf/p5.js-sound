@@ -97,14 +97,6 @@ define(function (require) {
      }
   };
   p5.Filter.prototype = Object.create(p5.Effect.prototype);
-=======
-    if (type) {
-      this.setType(type);
-     }
-
-    //add the filter to the prototype
-  };
-  p5.Filter.prototype = Object.create(p5.Effect.prototype);
 
  
 
@@ -350,3 +342,11 @@ define(function (require) {
   // p5.Filter.prototype = Object.create(p5.Filter.protoype);
 
 });
+
+
+
+  // p5.Filter = function () {
+  //   p5.Effect.call(this, 'Filter');
+  // };
+  // p5.Filter.prototype = Object.create(p5.Filter.protoype);
+
