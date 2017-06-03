@@ -78,10 +78,6 @@ define(function (require) {
 
 
 //constructor with inheritance
-
-
-    
-   
   p5.Filter = function (type) {
     //p5.Effect.call(this);
 	Efffect.call(this);
