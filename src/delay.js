@@ -3,6 +3,8 @@ define(function (require) {
 
   var p5sound = require('master');
   var Filter = require('filter');
+  var Effect = require('effect');
+
   /**
    *  Delay is an echo effect. It processes an existing sound source,
    *  and outputs a delayed version of that sound. The p5.Delay can
@@ -53,10 +55,11 @@ define(function (require) {
    *  </code></div>
    */
   p5.Delay = function() {
-    this.ac = p5sound.audiocontext;
+  	p5.Effect.call(this);
+//    this.ac = p5sound.audiocontext;
 
-    this.input = this.ac.createGain();
-    this.output = this.ac.createGain();
+ //   this.input = this.ac.createGain();
+// 	this.output = this.ac.createGain();
 
     this._split = this.ac.createChannelSplitter(2);
     this._merge = this.ac.createChannelMerger(2);
@@ -114,9 +117,10 @@ define(function (require) {
     this.feedback(0.5);
 
     // add this p5.SoundFile to the soundArray
-    p5sound.soundArray.push(this);
+//    p5sound.soundArray.push(this);
   };
 
+ p5.Delay.prototype = Object.create(p5.Effect.prototype);
   /**
    *  Add delay to an audio signal according to a set
    *  of delay parameters.
@@ -286,24 +290,24 @@ define(function (require) {
    *  @method  connect
    *  @param  {Object} unit
    */
-  p5.Delay.prototype.connect = function(unit) {
-    var u = unit || p5.soundOut.input;
-    this.output.connect(u);
-  };
+//  p5.Delay.prototype.connect = function(unit) {
+//    var u = unit || p5.soundOut.input;
+//    this.output.connect(u);
+//  };
 
   /**
    *  Disconnect all output.
    *  
    *  @method disconnect
    */
-  p5.Delay.prototype.disconnect = function() {
-    this.output.disconnect();
-  };
+//  p5.Delay.prototype.disconnect = function() {
+//    this.output.disconnect();
+//  };
 
   p5.Delay.prototype.dispose = function() {
     // remove reference from soundArray
-    var index = p5sound.soundArray.indexOf(this);
-    p5sound.soundArray.splice(index, 1);
+ //   var index = p5sound.soundArray.indexOf(this);
+ //   p5sound.soundArray.splice(index, 1);
 
     this.input.disconnect();
     this.output.disconnect();

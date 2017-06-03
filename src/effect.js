@@ -25,7 +25,6 @@ define(function (require) {
 		// this.wet.connect(this.output);
 		// this.dry.connect(this.output);
 
-		this.input.connect(this.output);
 
 
 		//connects to audiocontext destination
