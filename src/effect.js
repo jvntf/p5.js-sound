@@ -5,7 +5,6 @@ define(function (require) {
 
 	p5.Effect = function() {
 		//everything points to the same audiocontext
-		this.type = type;
 		
 		this.ac = p5sound.audiocontext;
 

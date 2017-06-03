@@ -80,7 +80,8 @@ define(function (require) {
 //constructor with inheritance
   p5.Filter = function (type) {
     //p5.Effect.call(this);
-	Efffect.call(this);
+
+    p5.Effect.call(this);
     //add extend Effect by adding a Biquad Filter
     this.biquad = this.ac.createBiquadFilter();
 
@@ -280,7 +281,7 @@ define(function (require) {
   p5.Filter.prototype.dispose = function() {
     // remove reference from soundArray
 
-	Effect.prototype.dispose.apply(this);
+    p5.Effect.prototype.dispose.apply(this);
 
     this.biquad.disconnect();
     this.biquad = undefined;

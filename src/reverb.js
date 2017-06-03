@@ -3,6 +3,7 @@ define(function (require) {
 
   var p5sound = require('master');
   var CustomError = require('errorHandler');
+  var Effect = require('effect')
   require('sndcore');
 
   /**
@@ -34,12 +35,17 @@ define(function (require) {
    *  }
    *  </code></div>
    */
+
+
   p5.Reverb = function() {
-    this.ac = p5sound.audiocontext;
+
+
+    p5.Effect.call(this);
+    //this.ac = p5sound.audiocontext;
     this.convolverNode = this.ac.createConvolver();
 
-    this.input = this.ac.createGain();
-    this.output = this.ac.createGain();
+    // this.input = this.ac.createGain();
+    // this.output = this.ac.createGain();
 
     // otherwise, Safari distorts
     this.input.gain.value = 0.5;
@@ -54,7 +60,7 @@ define(function (require) {
 
     this._buildImpulse();
     this.connect();
-    p5sound.soundArray.push(this);
+    // p5sound.soundArray.push(this);
   };
 
   /**
@@ -140,19 +146,19 @@ define(function (require) {
    *  @method  connect
    *  @param  {Object} unit
    */
-  p5.Reverb.prototype.connect = function(unit) {
-    var u = unit || p5.soundOut.input;
-    this.output.connect(u.input ? u.input : u);
-  };
+  // p5.Reverb.prototype.connect = function(unit) {
+  //   var u = unit || p5.soundOut.input;
+  //   this.output.connect(u.input ? u.input : u);
+  // };
 
-  /**
-   *  Disconnect all output.
-   *  
-   *  @method disconnect
-   */
-  p5.Reverb.prototype.disconnect = function() {
-    this.output.disconnect();
-  };
+  // *
+  //  *  Disconnect all output.
+  //  *  
+  //  *  @method disconnect
+   
+  // p5.Reverb.prototype.disconnect = function() {
+  //   this.output.disconnect();
+  // };
 
   /**
    *  Inspired by Simple Reverb by Jordan Santell
@@ -181,8 +187,8 @@ define(function (require) {
 
   p5.Reverb.prototype.dispose = function() {
     // remove reference from soundArray
-    var index = p5sound.soundArray.indexOf(this);
-    p5sound.soundArray.splice(index, 1);
+    // var index = p5sound.soundArray.indexOf(this);
+    // p5sound.soundArray.splice(index, 1);
 
     if (this.convolverNode) {
       this.convolverNode.buffer = null;
@@ -255,8 +261,8 @@ define(function (require) {
    *  </code></div>
    */
   p5.Convolver = function(path, callback, errorCallback) {
-    this.ac = p5sound.audiocontext;
-
+    //this.ac = p5sound.audiocontext;
+    p5.Effect.call(this);
     /**
      *  Internally, the p5.Convolver uses the a
      *  <a href="http://www.w3.org/TR/webaudio/#ConvolverNode">
@@ -267,8 +273,8 @@ define(function (require) {
      */
     this.convolverNode = this.ac.createConvolver();
 
-    this.input = this.ac.createGain();
-    this.output = this.ac.createGain();
+    // this.input = this.ac.createGain();
+    // this.output = this.ac.createGain();
 
     // otherwise, Safari distorts
     this.input.gain.value = 0.5;
@@ -289,7 +295,7 @@ define(function (require) {
       this._buildImpulse();
     }
     this.connect();
-    p5sound.soundArray.push(this);
+    // p5sound.soundArray.push(this);
   };
 
   p5.Convolver.prototype = Object.create(p5.Reverb.prototype);
