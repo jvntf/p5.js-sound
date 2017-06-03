@@ -2,6 +2,7 @@ define(function (require) {
   'use strict';
 
   var p5sound = require('master');
+  var Effect = require('effect');
 
   /**
    *  A p5.Filter uses a Web Audio Biquad Filter to filter
@@ -82,8 +83,8 @@ define(function (require) {
     
    
   p5.Filter = function (type) {
-    p5.Effect.call(this, 'Filter');
-
+    //p5.Effect.call(this);
+	Efffect.call(this);
     //add extend Effect by adding a Biquad Filter
     this.biquad = this.ac.createBiquadFilter();
 
@@ -282,15 +283,8 @@ define(function (require) {
 
   p5.Filter.prototype.dispose = function() {
     // remove reference from soundArray
-    var index = p5sound.soundArray.indexOf(this);
-    p5sound.soundArray.splice(index, 1);
 
-    this.input.disconnect();
-    this.input = undefined;
-
-
-    this.output.disconnect();
-    this.output = undefined;
+	Effect.prototype.dispose.apply(this);
 
     this.biquad.disconnect();
     this.biquad = undefined;

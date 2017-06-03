@@ -75,12 +75,12 @@ define(function (require) {
 	// 	//this.wetdry(amt);
 	// };
 
-/*
+
 	//effects necessary for all effects
 
-	p5.Effect.prototype.disconnect = function() {
-		this.out.disconnect();
-	};
+	// p5.Effect.prototype.disconnect = function() {
+	// 	this.out.disconnect();
+	// };
 
 	p5.Effect.prototype.dispose = function() {
 		var index = p5sound.soundArray.indexOf(this);
@@ -105,17 +105,17 @@ define(function (require) {
 	// 	//this.wetdry(amt);
 	// };
 
-/*
+
 	//sets wet dry value, input double between 0 and 1
-	p5.Effect.prototype.wetdry = function(value) {
-		//eventually implement cross fading like Tone.js
+	// p5.Effect.prototype.wetdry = function(value) {
+	// 	//eventually implement cross fading like Tone.js
 
-		//for now
+	// 	//for now
 
-		this.dry.value = 1-value;
-		this.wet.value = 1;
-	};
-*/
+	// 	this.dry.value = 1-value;
+	// 	this.wet.value = 1;
+	// };
+
 	//could link together a bunch of nodes
 	//TODO: find out how to have an open ended number of arguments
 	// p5.Effect.prototype.chain = function(...nodes){
