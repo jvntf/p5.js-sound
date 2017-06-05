@@ -95,7 +95,8 @@ define(function (require) {
     this.biquad = this.ac.createBiquadFilter();
 
     this.input.connect(this.biquad);
-    this.biquad.connect(this.output);
+    //this.biquad.connect(this.output);
+	this.biquad.connect(this.wet);
 
     if (type) {
       this.setType(type);

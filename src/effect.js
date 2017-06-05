@@ -2,6 +2,7 @@ define(function (require) {
 	'use strict';
 
 	var p5sound = require('master');
+	var CrossFade = require('Tone/component/CrossFade');
 
 	p5.Effect = function() {
 		//everything points to the same audiocontext
@@ -12,24 +13,23 @@ define(function (require) {
 		this.input = this.ac.createGain();
 		this.output = this.ac.createGain();
 
-//		this.dry = this.ac.createGain();
-//		this.wet = this.ac.createGain();
+		//Change _drywet.fade inorder to mix between signals
+		this._drywet = new CrossFade();
 
-
-		// this.input.connect(this.output);
-		//connect input to wet and dry gain nodes
-		// this.input.connect(this.dry);
-		// this.input.connect(this.wet);
-
-		// //connect wet and dry gain nodes to output
-		// this.wet.connect(this.output);
-		// this.dry.connect(this.output);
+		//Extend Effect by connecting an effect node
+		//to the wet node
+		this.wet = this.ac.createGain();
 
 
 
-		//connects to audiocontext destination
+		this.input.connect(this._drywet.a);
+		this.wet.connect(this._drywet.b);
+		this._drywet.connect(this.output);
+
+
 		this.connect();
 
+		//Add to the soundArray
 		p5sound.soundArray.push(this);
 	};
 
@@ -43,16 +43,6 @@ define(function (require) {
 		this.output.disconnect();
 	};
 
-	p5.Effect.prototype.dispose = function() {
-		var index = p5sound.soundArray.indexOf(this);
-		p5sound.soundArray.splice(index, 1);
-
-		this.input.disconnect();
-		this.input = undefined;
-
-		this.output.disconnect();
-		this.output = undefined;
-	};
 
 
 	//effects necessary for all effects
@@ -79,6 +69,11 @@ define(function (require) {
 	// p5.Effect.prototype.disconnect = function() {
 	// 	this.out.disconnect();
 	// };
+
+
+	p5.Effect.prototype.drywet = function(fade){
+			this._drywet.fade.value = fade;
+	};
 
 	p5.Effect.prototype.dispose = function() {
 		var index = p5sound.soundArray.indexOf(this);
