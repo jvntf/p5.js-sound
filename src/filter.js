@@ -79,18 +79,24 @@ define(function (require) {
 
 //constructor with inheritance
   p5.Filter = function (type) {
-    //p5.Effect.call(this);
 
     p5.Effect.call(this);
     //add extend Effect by adding a Biquad Filter
+
+    /**
+      *  The p5.Filter is built with a
+      *  <a href="http://www.w3.org/TR/webaudio/#BiquadFilterNode">
+      *  Web Audio BiquadFilter Node</a>.
+      *  
+      *  @property biquadFilter
+      *  @type {Object}  Web Audio Delay Node
+	  */
+
     this.biquad = this.ac.createBiquadFilter();
 
-    //correct the conections
-    this.input.disconnect();
     this.input.connect(this.biquad);
     this.biquad.connect(this.output);
 
-    //set Web Audio Filter type
     if (type) {
       this.setType(type);
      }

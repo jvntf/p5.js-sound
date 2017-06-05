@@ -12,8 +12,8 @@ define(function (require) {
 		this.input = this.ac.createGain();
 		this.output = this.ac.createGain();
 
-		this.dry = this.ac.createGain();
-		this.wet = this.ac.createGain();
+//		this.dry = this.ac.createGain();
+//		this.wet = this.ac.createGain();
 
 
 		// this.input.connect(this.output);
@@ -89,6 +89,8 @@ define(function (require) {
 
 		this.output.disconnect();
 		this.output = undefined;
+
+		this.ac = undefined;
 	};
 
 
@@ -149,7 +151,7 @@ define(function (require) {
 
 	// };
 
-
+	return p5.Effect;
 
 });
 
