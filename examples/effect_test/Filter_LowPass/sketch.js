@@ -11,7 +11,7 @@ var fft;
 var description = 'loading';
 var p;
 
-var filter, filterFreq, filterRes;
+var filter, filterFreq, filterRes, reverb, delay;
 
 function preload() {
   soundFormats('mp3', 'ogg');
@@ -26,17 +26,17 @@ function setup() {
   // loop the sound file
   soundFile.loop();
 
-  //filter = new p5.LowPass();
-  
-  //filter = new p5.Filter();
   filter = new p5.LowPass();
-  
+  reverb = new p5.Reverb();
+  delay = new p5.Delay(); 
 
 
   // Disconnect soundfile from master output.
   // Then, connect it to the filter, so that we only hear the filtered sound
   soundFile.disconnect();
   soundFile.connect(filter);
+
+  filter.chain(reverb,delay);
 
   fft = new p5.FFT();
 
@@ -52,9 +52,12 @@ function draw() {
   // Map mouseX to a the cutoff frequency for our lowpass filter
   filterFreq = map (mouseX, 0, width, 10, 22050);
   // Map mouseY to resonance/width
-  filterRes = map(mouseY, 0, height, 15, 5);
+  filterRes = map(mouseY, 0, height, 0, 1);
   // set filter parameters
-  filter.set(filterFreq, filterRes);
+  filter.set(1200, 14);
+
+  filter.drywet(filterRes);
+  
 
   // Draw every value in the FFT spectrum analysis where
   // x = lowest (10Hz) to highest (22050Hz) frequencies,
