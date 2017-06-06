@@ -102,7 +102,7 @@ define(function (require) {
     this.rightDelay.connect(this._rightGain);
     this._leftGain.connect(this._leftFilter.input);
     this._rightGain.connect(this._rightFilter.input);
-    this._merge.connect(this.output);
+    this._merge.connect(this.wet);
     this.output.connect(p5.soundOut.input);
 
     this._leftFilter.biquad.gain.setValueAtTime(1, this.ac.currentTime);
@@ -120,7 +120,7 @@ define(function (require) {
 //    p5sound.soundArray.push(this);
   };
 
- p5.Delay.prototype = Object.create(p5.Effect.prototype);
+ p5.Delay.prototype = Object.create(Effect.prototype);
   /**
    *  Add delay to an audio signal according to a set
    *  of delay parameters.
@@ -309,8 +309,9 @@ define(function (require) {
  //   var index = p5sound.soundArray.indexOf(this);
  //   p5sound.soundArray.splice(index, 1);
 
-    this.input.disconnect();
-    this.output.disconnect();
+	Effect.prototype.dispose.apply(this);
+//    this.input.disconnect();
+//    this.output.disconnect();
     this._split.disconnect();
     this._leftFilter.disconnect();
     this._rightFilter.disconnect();
@@ -320,8 +321,8 @@ define(function (require) {
     this.leftDelay.disconnect();
     this.rightDelay.disconnect();
 
-    this.input = undefined;
-    this.output = undefined;
+//    this.input = undefined;
+//    this.output = undefined;
     this._split = undefined;
     this._leftFilter = undefined;
     this._rightFilter = undefined;
