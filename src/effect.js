@@ -16,7 +16,7 @@ define(function (require) {
 		 *	@property _drywet
 		 *	@type {Object} ToneJS node
 		 */
-		this._drywet = new CrossFade();
+		this._drywet = new CrossFade(1);
 
 		/**
 		 *	In classes that extend
