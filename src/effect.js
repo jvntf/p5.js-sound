@@ -66,7 +66,8 @@ define(function (require) {
 	 *	@param {Float}
 	 */
 	p5.Effect.prototype.drywet = function(fade){
-			this._drywet.fade.value = fade;
+		this._drywet.fade.value = fade;
+		return this._drywet.fade.value;
 	};
 
 
