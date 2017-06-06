@@ -115,9 +115,9 @@ define(function (require) {
    *  @param {[Number]} res Resonance/Width of the filter frequency
    *                        from 0.001 to 1000
    */
-  p5.Filter.prototype.process = function(src, freq, res) {
+  p5.Filter.prototype.process = function(src, freq, res, time) {
     src.connect(this.input);
-    this.set(freq, res);
+    this.set(freq, res, time);
   };
 
 
