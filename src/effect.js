@@ -41,6 +41,8 @@ define(function (require) {
 		this.wet.connect(this._drywet.b);
 		this._drywet.connect(this.output);
 
+		this.chained = [];
+
 		this.connect();
 
 		//Add to the soundArray
@@ -116,6 +118,9 @@ define(function (require) {
 		this.output.disconnect();
 		this.output = undefined;
 
+		for (var i = 0; i < this.chained.length; i++) {
+			this.chained[i].dispose();
+		}
 		this.ac = undefined;
 	};
 
@@ -134,8 +139,11 @@ define(function (require) {
 		
 			for(var i=1;i<arguments.length; i+=1){
 				arguments[i-1].connect(arguments[i]);
+				this.chained.push(arguments[i-1]);
 			}
 		}
+
+		this.chained = Array.from(arguments);
 		return this;
 	}
 	
