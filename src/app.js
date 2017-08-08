@@ -30,6 +30,8 @@ define(function (require) {
   require('peakdetect');
   require('gain');
   require('distortion');
+  require('monosynth');
+  require('polysynth');
 
   return p5SOUND;
 
